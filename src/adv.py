@@ -1,6 +1,5 @@
-from room import Room
 from player import Player
-
+from room import Room
 # Declare all the rooms
 
 room = {
@@ -36,58 +35,53 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-#
+name = input('\nWelcome to Adventure game, what shall we call you...? \n\n')
 
 # Make a new new_player object that is currently in the 'outside' room.
 new_player = Player('joe', room['outside'])
+
 # Write a loop that:
-#
+# while True:
 # * Prints the current room name
-print(f"Current Location:{new_player.current_room.name}")
+
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
-command = ''
-while command != 'q':
-    command = input("Choose a direction to move . Enter n, s, e, or w:")
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
 
-#CODE
-directions = {'n': 'n_to', 's': 's_to', 'e': 'e_to', 'w': 'w_to'}
+# CODE
+commands = ['n', 's', 'e', 'w']
 
-while true:
-	  print(str(new_player.current_room))
-      choice = input("Which way, Gandalf? ")
 
-	direction = directions[choice]
-
+while commands :
+	print(f"Current Location:{new_player.current_room.name}")
+	command = input("Choose a direction to move. ")
 	try:
-		# if command == 'n':
-		# 	if new_player.current_room.n_to:
-		# 		new_player.current_room = new_player.current_room.n_to
-		# 	else:
-		# 		print("Sorry, there isn't a room to the North. Please choose another direction.")
-		# elif command == 's':
-		# 	if new_player.current_room.s_to:
-		# 		new_player.current_room = new_player.current_room.s_to
-		# 	else:
-		# 		print("Sorry, there isn't a room to the South. Please choose another direction.")
-		# elif command == 'e':
-		# 	if new_player.current_room.e_to:
-		# 		new_player.current_room = new_player.current_room.e_to
-		# 	else:
-		# 		print("Sorry, there isn't a room to the East. Please choose another direction.")
-		# elif command == 'w':
-		# 	if new_player.current_room.w_to:
-		# 		new_player.current_room = new_player.current_room.w_to
-		# 	else:
-		# 		print("Sorry, there isn't a room to the West. Please choose another direction.")
-		# elif command == 'q':
-		# 	exit(0)
-	player.current_room = getattr(player.current_room, direction)
-    
-    except AttributeError:
-		print("Sorry, no room in that direction. Please choose another direction.")
+		if command == 'n':
+			if new_player.current_room.n_to is not False:
+				new_player.current_room = new_player.current_room.n_to
+			else:
+				print("\nSorry, there isn't a room to the North. Please choose another direction.\n")
+		elif command == 's':
+			if new_player.current_room.s_to is not False:
+				new_player.current_room = new_player.current_room.s_to
+			else:
+				print("\nSorry, there isn't a room to the South. Please choose another direction.\n")
+		elif command == 'e':
+			if new_player.current_room.e_to is not False:
+				new_player.current_room = new_player.current_room.e_to
+			else:
+				print("\nSorry, there isn't a room to the East. Please choose another direction.\n")
+		elif command == 'w':
+			if new_player.current_room.w_to is not False:
+				new_player.current_room = new_player.current_room.w_to
+			else:
+				print("\nSorry, there isn't a room to the West. Please choose another direction.\n")
+		elif command == 'q':
+			 exit(0)
+
+	except ValueError:
+		print("Thank you for playing the game looser!")
